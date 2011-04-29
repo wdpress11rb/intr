@@ -16,6 +16,17 @@ class WelcomeController < ApplicationController
     end
   end
 
+  def introduce
+    @user = current_user
+    case @user.provider
+    when 'twitter'
+      post_twitter(params[:name], params[:message])
+    when 'facebook'
+      post_facebook(params[:id], params[:message])
+    end
+    redirect_to dashboard_path
+  end
+
   private
   def twitter_client
     ::Twitter::Client.new(
@@ -46,5 +57,16 @@ class WelcomeController < ApplicationController
         :profile_url => "https://graph.facebook.com/#{user["id"]}/picture?type=square"
       }
     }
+  end
+
+  def post_twitter(name, message)
+    twitter_client.update("@#{name} [Intr] #{message}")
+  end
+
+  def post_facebook(id, message)
+    facebook_client.put_object(id,"feed",{
+      :message => "[Intr] #{message}",
+      :name => "Intr"
+    })
   end
 end

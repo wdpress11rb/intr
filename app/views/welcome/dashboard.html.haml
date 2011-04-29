@@ -7,3 +7,9 @@
     %li.friend
       = image_tag friend[:profile_url]
       %p= friend[:name]
+      = form_tag introduce_path, :method => :post do
+        = hidden_field_tag :id, friend[:id]
+        = hidden_field_tag :name, friend[:name]
+        = label_tag :message, "Introduce: "
+        = text_field_tag :message
+        = submit_tag "Post"
