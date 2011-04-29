@@ -2,3 +2,8 @@
   Welcome
   = @user.name
   = "from " + @user.provider
+%ul.friends
+  - @friends.each do |friend|
+    %li.friend
+      = image_tag friend[:profile_url]
+      %p= friend[:name]

@@ -9,6 +9,8 @@ gem 'sqlite3'
 gem 'haml'
 gem 'haml-rails'
 gem 'omniauth'
+gem 'twitter'
+gem 'koala'
 
 # Use unicorn as the web server
 # gem 'unicorn'
