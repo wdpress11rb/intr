@@ -1,7 +1,8 @@
 class SessionsController < ApplicationController
   def create
     auth = env['omniauth.auth']
-    unless user = User.find_by_provider_and_uid(auth['provider'], auth['uid'])
+    unless user = User.find_by_provider_and_uid(
+                          auth['provider'], auth['uid'])
       user = User.new({
         :name => auth['user_info']['nickname'],
         :provider => auth['provider'],

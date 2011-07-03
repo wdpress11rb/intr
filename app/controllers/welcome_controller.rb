@@ -54,7 +54,8 @@ class WelcomeController < ApplicationController
       {
         :id => user["id"],
         :name => user["name"],
-        :profile_url => "https://graph.facebook.com/#{user["id"]}/picture?type=square"
+        :profile_url =>
+          "https://graph.facebook.com/#{user["id"]}/picture?type=square"
       }
     }
   end
